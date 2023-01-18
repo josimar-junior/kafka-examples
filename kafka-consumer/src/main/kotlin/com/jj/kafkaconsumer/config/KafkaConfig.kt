@@ -18,10 +18,10 @@ class KafkaConfig {
     @Bean
     fun consumerFactory(): ConsumerFactory<String, Person> {
         val config: MutableMap<String, Any> = mutableMapOf()
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092")
-        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer::class.java)
-        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer::class.java)
-        config.put(ConsumerConfig.GROUP_ID_CONFIG, "groupId")
+        config[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = "localhost:29092"
+        config[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
+        config[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = JsonDeserializer::class.java
+        config[ConsumerConfig.GROUP_ID_CONFIG] = "groupId"
 
         val jsonDeserializer = JsonDeserializer(Person::class.java)
         jsonDeserializer.setRemoveTypeHeaders(false);
